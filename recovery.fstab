@@ -1,0 +1,32 @@
+# TWRP Recovery fstab for <your_device_codename>
+# Automatically converted from stock fstab by Lynx (GPT-5)
+
+# Mountable partitions
+/system                                      /system               erofs     ro,barrier=1,discard                         wait,slotselect,logical,first_stage_mount
+/system_ext                                  /system_ext           erofs     ro,barrier=1,discard                         wait,slotselect,logical,first_stage_mount
+/vendor                                      /vendor               erofs     ro,barrier=1,discard                         wait,slotselect,logical,first_stage_mount
+/product                                     /product              erofs     ro,barrier=1,discard                         wait,slotselect,logical,first_stage_mount
+/vendor_dlkm                                 /vendor_dlkm          erofs     ro,barrier=1,discard                         wait,slotselect,logical,first_stage_mount
+
+# Data and metadata
+/dev/block/by-name/metadata                  /metadata             ext4      noatime,nosuid,nodev,discard                 wait,check,formattable,first_stage_mount
+/dev/block/by-name/userdata                  /data                 f2fs      noatime,nosuid,nodev,discard,inlinecrypt     wait,check,formattable,quota,latemount,encryptable=footer
+
+# Persist / protect partitions
+/dev/block/by-name/persist                   /persist              ext4      noatime,nosuid,nodev                         wait,check,formattable
+/dev/block/by-name/protect1                  /mnt/vendor/protect_f ext4      noatime,nosuid,nodev                         wait,check,formattable
+/dev/block/by-name/protect2                  /mnt/vendor/protect_s ext4      noatime,nosuid,nodev                         wait,check,formattable
+/dev/block/by-name/nvdata                    /mnt/vendor/nvdata    ext4      noatime,nosuid,nodev                         wait,check,formattable
+/dev/block/by-name/nvcfg                     /mnt/vendor/nvcfg     ext4      noatime,nosuid,nodev                         wait,check,formattable
+
+# Storage
+/devices/platform/soc/11240000.mmc*          /external_sd          vfat      defaults                                     voldmanaged=sdcard1:auto,encryptable=userdata
+/devices/platform/soc/mt_usb*                /usb_otg              vfat      defaults                                     voldmanaged=usbotg:auto
+
+# Boot / Vendor_boot (for repacking)
+#/dev/block/by-name/boot                     /boot                 emmc      defaults                                     backup=1
+/dev/block/by-name/vendor_boot               /vendor_boot          emmc      defaults                                     backup=1
+
+# Additional logical / vbmeta (for flashing)
+#/dev/block/by-name/vbmeta_system            /vbmeta_system        emmc      defaults                                     first_stage_mount,nofail,slotselect,avb=vbmeta
+#/dev/block/by-name/dtbo                     /dtbo                 emmc      defaults                                     defaults
