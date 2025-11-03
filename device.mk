@@ -54,6 +54,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.vendor_boot=true
 
+# Force single consistent zygote definition (64-bit primary + 32-bit secondary)
+PRODUCT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
+
+
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
