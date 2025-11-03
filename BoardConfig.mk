@@ -55,19 +55,25 @@ BOARD_RAMDISK_OFFSET := 0x26f08000
 BOARD_DTB_SIZE := 209018
 BOARD_DTB_OFFSET := 0x07c88000
 BOARD_VENDOR_BASE := 0x3fff8000
-BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
+# BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
 # Vendor boot partition size (adjust using your device’s partition table)
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 
 
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-BOARD_MKBOOTIMG_ARGS += --vendor_cmdline $(BOARD_VENDOR_CMDLINE)
+# BOARD_MKBOOTIMG_ARGS += --vendor_cmdline $(BOARD_VENDOR_CMDLINE)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_PAGE_SIZE) --board ""
 BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
+
+# Boot cmdline for vendor_boot (MTK)
+BOARD_MKBOOTIMG_ARGS += --vendor_cmdline "bootopt=64S3,32N2,64N2 androidboot.selinux=permissive"
+
+# Optional: also keep in kernel cmdline if needed for fallback
+BOARD_VENDOR_CMDLINE := "bootopt=64S3,32N2,64N2 androidboot.selinux=permissive"
 
 # File systems
 TARGET_USERIMAGES_USE_EXT4 := true
