@@ -55,7 +55,7 @@ BOARD_RAMDISK_OFFSET := 0x26f08000
 BOARD_DTB_SIZE := 209018
 BOARD_DTB_OFFSET := 0x07c88000
 BOARD_VENDOR_BASE := 0x3fff8000
-BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
+BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
 # Vendor boot partition size (adjust using your device’s partition table)
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 
