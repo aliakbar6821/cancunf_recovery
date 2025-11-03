@@ -54,10 +54,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += ro.twrp.vendor_boot=true
 
-# Force single consistent zygote definition (64-bit primary + 32-bit secondary)
-PRODUCT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
-
-
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -117,3 +113,9 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
 
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.1
+
+# =========================================================
+# Force single consistent zygote definition
+# =========================================================
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.zygote=zygote64_32
