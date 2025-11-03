@@ -5,7 +5,7 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
@@ -113,9 +113,3 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
 
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.1
-
-# =========================================================
-# Force single consistent zygote definition
-# =========================================================
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.zygote=zygote64_32
